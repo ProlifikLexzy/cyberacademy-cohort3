@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LearnCSharp.Cmd.Shapes;
+using System;
 
 namespace LearnCSharp.Cmd
 {
@@ -6,10 +7,8 @@ namespace LearnCSharp.Cmd
     {
         static void Main()
         {
-            var anything = new int[4]{9, 3, 88, 45 };
-           
-            Console.WriteLine(anything[2]);
-
+            Circle.Area(3.4);
+            Circle.Area(40.6);
         }
     }
 }
