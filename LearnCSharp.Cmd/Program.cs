@@ -1,5 +1,4 @@
-﻿using LearnCSharp.Cmd.Shapes;
-using LearnCSharp.Library;
+﻿using LearnCSharp.Library;
 using System;
 
 namespace LearnCSharp.Cmd
@@ -9,15 +8,27 @@ namespace LearnCSharp.Cmd
         static string name = "Seyi";
         static void Main()
         {
-            Circle c = new Circle();
-            var c1 = new Circle();
-            Circle c2 = SomeMethod();
+            var v = new Vehicle();
+
+            Vehicle.Car bmw = new Vehicle.Car("BMW");
+            bmw.DisplayManufacturerName();
+
+            var mercedes = bmw;
+            mercedes.DisplayManufacturerName();
+          
+            mercedes.DisplayManufacturerName();
+
+            var volvo = new Vehicle.Car("Volvo");
+            mercedes.DisplayManufacturerName();
         }
 
-        static Circle SomeMethod()
+        static void SomeMethod()
         {
-            Circle c2 = new();
-            return c2;
+
+        }
+
+        static void SomeMethod(int i)
+        {
 
         }
     }
