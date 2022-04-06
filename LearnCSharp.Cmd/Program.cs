@@ -8,7 +8,7 @@ namespace LearnCSharp.Cmd
         static void Main()
         {
             Console.Write("Enter F/M as your gender");
-            var input = "feMale".ToUpper().Trim();
+            var input = Console.ReadLine().ToUpper().Trim();
 
             switch (input)
             {
