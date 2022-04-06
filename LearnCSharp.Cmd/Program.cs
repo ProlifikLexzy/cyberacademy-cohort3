@@ -7,24 +7,25 @@ namespace LearnCSharp.Cmd
     {
         static void Main()
         {
-            int i = 0;
-            if (!(i < 9 || false))
+            Console.Write("Enter F/M as your gender");
+            var input = "feMale".ToUpper().Trim();
+
+            switch (input)
             {
-                i = 2;
+                case "MALE":
+                    goto case "M";
+                case "FEMALE":
+                case "F":
+                    Console.WriteLine("You're a female");
+                    break;
+                case "M":
+                    Console.WriteLine("You're a Male");
+                    break;
+                default:
+                    Console.WriteLine("Unknow Gender");
+                    break;
             }
-            else if (i <= -10 || i != 5)
-            {
-                i = 1;
-            }
-            else if (i == 0)
-            {
-                i = 7;
-            }
-            else
-            {
-                i = 3;
-            }
-            Console.WriteLine(i);
+            Console.WriteLine("End of main");
         }
     }
 }
