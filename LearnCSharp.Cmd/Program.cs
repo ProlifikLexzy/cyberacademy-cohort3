@@ -5,31 +5,16 @@ namespace LearnCSharp.Cmd
 {
     public class Program
     {  
-        static string name = "Seyi";
         static void Main()
         {
-            var v = new Vehicle();
+            Shape s = new Shape(89);
+            s.Draw();
 
-            Vehicle.Car bmw = new Vehicle.Car("BMW");
-            bmw.DisplayManufacturerName();
+            Shape c = new Circle(70);
+            c.Draw();
 
-            var mercedes = bmw;
-            mercedes.DisplayManufacturerName();
-          
-            mercedes.DisplayManufacturerName();
-
-            var volvo = new Vehicle.Car("Volvo");
-            mercedes.DisplayManufacturerName();
-        }
-
-        static void SomeMethod()
-        {
-
-        }
-
-        static void SomeMethod(int i)
-        {
-
+            SuperCircle sc = new SuperCircle(90);
+            sc.Draw();
         }
     }
 }
