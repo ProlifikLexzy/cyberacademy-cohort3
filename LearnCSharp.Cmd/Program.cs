@@ -4,17 +4,27 @@ using System;
 namespace LearnCSharp.Cmd
 {
     public class Program
-    {  
+    {
         static void Main()
         {
-            Shape s = new Shape(89);
-            s.Draw();
-
-            Shape c = new Circle(70);
-            c.Draw();
-
-            SuperCircle sc = new SuperCircle(90);
-            sc.Draw();
+            int i = 0;
+            if (!(i < 9 || false))
+            {
+                i = 2;
+            }
+            else if (i <= -10 || i != 5)
+            {
+                i = 1;
+            }
+            else if (i == 0)
+            {
+                i = 7;
+            }
+            else
+            {
+                i = 3;
+            }
+            Console.WriteLine(i);
         }
     }
 }
