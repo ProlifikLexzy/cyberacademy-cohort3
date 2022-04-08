@@ -6,41 +6,31 @@ namespace LearnCSharp.Cmd
     {
         static void Main()
         {
-            object o = new object();
-            int i = 9;
-            string s = "Prolifik,Lexzy, Segun";
+            Point[] points = new Point[20];
 
-            var p = new Person() { LastName = "Prolifik", FirstName = "Lexzy" };
-            var p2 = new Person() { LastName = "Paul" };
-            var p3 = new Person();
+            for (int i = 0; i < points.Length; i++)
+            {
+                //if (i % 2 == 0)
+                //    continue;
 
-            Console.WriteLine(p);
-            Console.WriteLine(p2);
-            Console.WriteLine(p3);
+                points[i] = new Point() { X = i * 2, Y = i * 3 };
+            }
+
+            for (int i = 0; i < points.Length; i++)
+            {
+                Console.WriteLine(points[i]);
+            }
         }
     }
 
-    public class Person
+    public class Point
     {
-        public Person()
-        {
-            FirstName = "Unknown";
-            LastName = "Unknown";
-        }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public int X { get; set; } = -1;
+        public int Y { get; set; } = -1;
 
         public override string ToString()
         {
-            return this.LastName + " " + this.FirstName;
-        }
-    }
-
-    public class Shape
-    {
-        public static void WriteLine(Person p)
-        {
-            p.ToString();
+            return $"X = {X}, Y = {Y}";
         }
     }
 }
