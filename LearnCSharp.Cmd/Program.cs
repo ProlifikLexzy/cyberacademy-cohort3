@@ -11,9 +11,9 @@ namespace LearnCSharp.Cmd
 
     public enum UnitTypes
     {
-        M,
+        M ,
         KM,
-        CM,
+        CM = 12,
         MM
     }
     public class Program
@@ -27,7 +27,8 @@ namespace LearnCSharp.Cmd
             var p = new Point();
             p.Unit = UnitTypes.M;
 
-            Console.WriteLine(p);
+            UnitTypes unit = (UnitTypes)0;
+            Console.WriteLine(unit);
         }
     }
 
