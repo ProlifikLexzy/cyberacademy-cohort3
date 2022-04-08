@@ -2,35 +2,44 @@
 
 namespace LearnCSharp.Cmd
 {
+
+    public enum Gender
+    {
+        Male,
+        Female
+    }
+
+    public enum UnitTypes
+    {
+        M,
+        KM,
+        CM,
+        MM
+    }
     public class Program
     {
         static void Main()
         {
-            Point[] points = new Point[20];
+            const string male = "M";
+            const string female = "F";
 
-            for (int i = 0; i < points.Length; i++)
-            {
-                //if (i % 2 == 0)
-                //    continue;
 
-                points[i] = new Point() { X = i * 2, Y = i * 3 };
-            }
+            var p = new Point();
+            p.Unit = UnitTypes.M;
 
-            for (int i = 0; i < points.Length; i++)
-            {
-                Console.WriteLine(points[i]);
-            }
+            Console.WriteLine(p);
         }
     }
 
     public class Point
     {
+        public UnitTypes Unit { get; set; }
         public int X { get; set; } = -1;
         public int Y { get; set; } = -1;
 
         public override string ToString()
         {
-            return $"X = {X}, Y = {Y}";
+            return $"X = {X} {Unit}, Y = {Y} {Unit}";
         }
     }
 }
