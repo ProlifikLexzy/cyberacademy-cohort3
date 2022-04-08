@@ -6,90 +6,41 @@ namespace LearnCSharp.Cmd
     {
         static void Main()
         {
+            object o = new object();
+            int i = 9;
+            string s = "Prolifik,Lexzy, Segun";
 
-            var s = new Shape();
-            s.Length = 89;
-            s.Height = 71;
+            var p = new Person() { LastName = "Prolifik", FirstName = "Lexzy" };
+            var p2 = new Person() { LastName = "Paul" };
+            var p3 = new Person();
 
-            short s1 = 10;
-            short s2 = 12;
-            int[] numbers = new int[2] 
-            { 
-                s1, s2
-            };
-
-            int[] num = {1 , 2 };
-
-            Point[] points = { 
-                new Point { X = 82, Y = 12 },
-                new Point { X = -19, Y = -100},
-                new Shape()
-            };
-
-            s.Center = points;
-
-            var s3 = new Shape()
-            {
-                Length = 40,
-                Height = 45
-            };
-
-            s.Draw();
-
-            var someType = new
-            {
-                Model = "Porche",
-                Year = 3000,
-            };
-
-            var someType2 = new
-            {
-                Model = "Toyota",
-                Year = 3000,
-            };
-
-            var customer = new
-            {
-                LastName = "",
-                FirstName = "",
-                fgsdfgf = 89
-            };
-
-
-            someType = someType2;
-
+            Console.WriteLine(p);
+            Console.WriteLine(p2);
+            Console.WriteLine(p3);
         }
     }
 
-    public class Shape: Point
+    public class Person
     {
-        public Point[] Center { get; set; }
-        private int length = 78;
-
-        public int Length
+        public Person()
         {
-            get
-            {
-                return length;
-            }
-
-            set
-            {
-                length = value;
-            }
+            FirstName = "Unknown";
+            LastName = "Unknown";
         }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
-        public int Height { get; set; }
-
-        public void Draw()
+        public override string ToString()
         {
-            Console.WriteLine(Length);
+            return this.LastName + " " + this.FirstName;
         }
     }
 
-    public class Point
+    public class Shape
     {
-        public int X { get; set; }
-        public int Y { get; set; }  
+        public static void WriteLine(Person p)
+        {
+            p.ToString();
+        }
     }
 }
