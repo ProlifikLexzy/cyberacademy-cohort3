@@ -6,21 +6,23 @@ namespace LearnCSharp.Cmd
     {
         static void Main()
         {
-            var sum = new Addition<int, Shape, string>();
-            sum.Add(new Shape(), 67, 90);
-
+            var c = new Circle<int, bool>(90);
         }
     }
 
-
-    public class Addition<T, R, V>
+    public class Shape<P>
     {
-        public void Add(R parameter1, T parameter2, int p3)
+        public P Radius { get; set; }
+    }
+
+    public class Circle<P, L> : Shape<P>
+    {
+        public Circle(P p1)
         {
 
         }
     }
 
 
-    public class Shape { }
+
 }
