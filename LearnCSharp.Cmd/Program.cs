@@ -6,23 +6,34 @@ namespace LearnCSharp.Cmd
     {
         static void Main()
         {
-            var c = new Circle<int, bool>(90);
+
+            var data = new Data();
+            data.Add(1);
+            data.Add(true);
+            data.Add('\n');
         }
     }
 
-    public class Shape<P>
+    public interface IData
     {
-        public P Radius { get; set; }
+        void Add<D>(D item);
     }
 
-    public class Circle<P, L> : Shape<P>
+    public class Data : IData
     {
-        public Circle(P p1)
+        private object[] _data;
+        private int _index;
+
+        public Data()
         {
+            _data = new object[10];
+        }
 
+        public void Add<D>(D item)
+        {
+            _data[_index++] = item; 
         }
     }
-
 
 
 }
