@@ -7,32 +7,32 @@ namespace LearnCSharp.Cmd
         static void Main()
         {
 
-            var data = new Data();
-            data.Add(1);
-            data.Add(true);
-            data.Add('\n');
         }
     }
 
-    public interface IData
+    public class IShape
+    { }
+
+    public class Square: IShape
+    { 
+        public Square()
+        {
+        }
+    }
+    public class Circle
     {
-        void Add<D>(D item);
+        public Circle()
+        { }
+    }
+    
+    public class Shape<U, T> where U: IShape, new() where T : struct
+    {
+
     }
 
-    public class Data : IData
+    public class Triangle: Shape<Square, bool>
     {
-        private object[] _data;
-        private int _index;
 
-        public Data()
-        {
-            _data = new object[10];
-        }
-
-        public void Add<D>(D item)
-        {
-            _data[_index++] = item; 
-        }
     }
 
 
