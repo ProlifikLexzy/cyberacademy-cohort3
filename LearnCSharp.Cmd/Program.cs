@@ -2,31 +2,25 @@
 
 namespace LearnCSharp.Cmd
 {
-
-   
     public class Program
     {
         static void Main()
         {
-            var p = new Point[9];
-            var line = new Line(p);
+            var sum = new Addition<int, Shape, string>();
+            sum.Add(new Shape(), 67, 90);
+
         }
     }
 
-    public struct Line
+
+    public class Addition<T, R, V>
     {
-        public Line(Point[] points)
+        public void Add(R parameter1, T parameter2, int p3)
         {
-            Points = points;
+
         }
-
-        public Point[] Points { get; set; }
     }
 
-    public struct Point
-    {
-        public double X { get; set; }
-        public double Y { get; set; }   
-    }
 
+    public class Shape { }
 }
