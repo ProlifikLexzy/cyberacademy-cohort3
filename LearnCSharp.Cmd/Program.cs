@@ -3,15 +3,17 @@
 namespace LearnCSharp.Cmd
 {
     public delegate int Arithmetic(int first, int second);
+    public delegate void ArithmeticDelegate();
 
     public delegate Shape DrawDelegate();
+    public delegate void ShapeDelegate(int i);
 
     public class Shape
     {
 
     }
 
-    public class Triangle: Shape
+    public class Triangle : Shape
     {
 
     }
@@ -25,10 +27,40 @@ namespace LearnCSharp.Cmd
 
         static void Main()
         {
+            ShapeDelegate shapeDelegate = i =>
+            {
+                Console.WriteLine(i);
+            };
+
+            ArithmeticDelegate arithmeticDelegate = () =>
+            {
+            };
+
             DrawDelegate drawDelegate = DrawTriangle;
 
             Arithmetic del = Add;
-            //del += Minus;
+            del += Minus;
+
+            //Annonymous delegate method
+            del += delegate (int first, int second)
+            {
+                return first + second;
+            };
+
+            del += delegate (int first, int second)
+            {
+                return first + second;
+            };
+
+            //Lambda Expression
+            del += (first, second) =>
+            {
+                return second + first;
+            };
+
+            del += (first, second) => second + first;
+
+
             var result = del(39, 8);
             Console.WriteLine(result);
 
