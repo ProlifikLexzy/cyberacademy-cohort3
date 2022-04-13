@@ -2,90 +2,51 @@
 
 namespace LearnCSharp.Cmd
 {
+    public delegate int Arithmetic(int first, int second);
 
+    public delegate Shape DrawDelegate();
+
+    public class Shape
+    {
+
+    }
+
+    public class Triangle: Shape
+    {
+
+    }
     public class Program
     {
+
+        static Triangle DrawTriangle()
+        {
+            return new Triangle();
+        }
+
         static void Main()
         {
+            DrawDelegate drawDelegate = DrawTriangle;
 
-            People p = new People();
+            Arithmetic del = Add;
+            //del += Minus;
+            var result = del(39, 8);
+            Console.WriteLine(result);
 
-            Person person = p[1];
-            Console.WriteLine(person.Name);
+            //Console.WriteLine("+++++++++++++++++");
+            //del -= MyMethod2;
+            //del(80);
 
-
-
-            ShoppingBag<Bag> shoppingBag = new ShoppingBag<Bag>();
-            shoppingBag.AddItem(new Bag() { ProductName = "Tomato Paste", ProductCount = 67 });
-            shoppingBag.AddItem(new Bag() { ProductName = "Corn Flakes", ProductCount = 7 });
-            shoppingBag.AddItem(new Bag() { ProductName = "Indomie", ProductCount = 67 });
-            shoppingBag.AddItem(new Bag() { ProductName = "Hypo", ProductCount = 67 });
-
-            var counter = 0;
-            while (counter < 4)
-            {
-                Console.WriteLine(shoppingBag[counter]); //indexing
-                counter++;
-            }
         }
-    }
 
-    public class ShoppingBag<T> where T : Bag
-    {
-        private T[] _items = new T[10];
-        private int _index = 0;
-        public void AddItem(T item)
+        static int Add(int a, int b)
         {
-            _items[_index++] = item;
+            return a + b;
         }
 
-        public T GetItem(int index)
+        static int Minus(int x, int y)
         {
-            return _items[index];
+            return x - y;
         }
 
-        public T this[int position]
-        {
-            get
-            {
-                return _items[position];
-            }
-        }
-    }
-
-    public class Bag
-    {
-        public string ProductName { get; set; }
-        public int ProductCount { get; set; }
-
-
-        public override string ToString()
-        {
-            return $"{ProductName} - {ProductCount}";
-        }
-    }
-
-    public class Person
-    {
-        public string Name { get; set; }
-    }
-
-    public class People
-    {
-        private readonly Person[] names = {
-
-            new Person{ Name = "Bill Gates" },
-            new Person{Name = "Prolifik Lexzy"},
-            new Person{Name = "Scott Allen" },
-            new Person{Name ="Scott Guthrie" }
-        };
-
-        public Person this[int position]
-        {
-            get
-            {
-                return names[position];
-            }
-        }
     }
 }
