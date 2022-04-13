@@ -2,10 +2,19 @@
 
 namespace LearnCSharp.Cmd
 {
+
     public class Program
     {
         static void Main()
         {
+
+            People p = new People();
+
+            Person person = p[1];
+            Console.WriteLine(person.Name);
+
+
+
             ShoppingBag<Bag> shoppingBag = new ShoppingBag<Bag>();
             shoppingBag.AddItem(new Bag() { ProductName = "Tomato Paste", ProductCount = 67 });
             shoppingBag.AddItem(new Bag() { ProductName = "Corn Flakes", ProductCount = 7 });
@@ -13,9 +22,9 @@ namespace LearnCSharp.Cmd
             shoppingBag.AddItem(new Bag() { ProductName = "Hypo", ProductCount = 67 });
 
             var counter = 0;
-            while(counter < 4)
+            while (counter < 4)
             {
-                Console.WriteLine(shoppingBag.GetItem(counter));
+                Console.WriteLine(shoppingBag[counter]); //indexing
                 counter++;
             }
         }
@@ -34,6 +43,14 @@ namespace LearnCSharp.Cmd
         {
             return _items[index];
         }
+
+        public T this[int position]
+        {
+            get
+            {
+                return _items[position];
+            }
+        }
     }
 
     public class Bag
@@ -45,6 +62,30 @@ namespace LearnCSharp.Cmd
         public override string ToString()
         {
             return $"{ProductName} - {ProductCount}";
+        }
+    }
+
+    public class Person
+    {
+        public string Name { get; set; }
+    }
+
+    public class People
+    {
+        private readonly Person[] names = {
+
+            new Person{ Name = "Bill Gates" },
+            new Person{Name = "Prolifik Lexzy"},
+            new Person{Name = "Scott Allen" },
+            new Person{Name ="Scott Guthrie" }
+        };
+
+        public Person this[int position]
+        {
+            get
+            {
+                return names[position];
+            }
         }
     }
 }
