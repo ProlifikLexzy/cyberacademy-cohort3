@@ -2,7 +2,7 @@
 
 namespace LearnCSharp.Cmd
 {
-    public delegate int Arithmetic(int first, int second);
+    public delegate W Arithmetic<W, Y, Z>(Y first, Z second);
     public delegate void ArithmeticDelegate();
 
     public delegate Shape DrawDelegate();
@@ -38,7 +38,7 @@ namespace LearnCSharp.Cmd
 
             DrawDelegate drawDelegate = DrawTriangle;
 
-            Arithmetic del = Add;
+            Arithmetic<int, int, int> del = Add;
             del += Minus;
 
             //Annonymous delegate method
