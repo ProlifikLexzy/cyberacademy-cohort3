@@ -8,7 +8,7 @@ namespace LearnCSharp.Library
 
         public Staffs(Employee[] employees)
         {
-           employeeEnumerator = new EmployeeEnumerator(employees);
+            employeeEnumerator = new EmployeeEnumerator(employees);
         }
 
         private readonly EmployeeEnumerator employeeEnumerator;
@@ -26,7 +26,7 @@ namespace LearnCSharp.Library
             this.EmployeeList = employees;
         }
         private int counter = -1;
-        public Employee[] EmployeeList { get; set; }
+        private Employee[] EmployeeList { get; set; }
 
         public object Current => EmployeeList[counter];
 
@@ -34,21 +34,26 @@ namespace LearnCSharp.Library
         {
             counter++;
 
-            if (counter > EmployeeList.Length -1)
+            if (counter > EmployeeList.Length - 1)
+            {
+                Reset();
                 return false;
+            }
 
-           
+
             return true;
         }
 
         public void Reset()
         {
+            counter = -1;
         }
     }
 
     public class Employee
     {
-        public int Level { get; set; }
+        public int Level { get { return 0; } }
+        public int Level1 => 0;
         public string Title { get; set; }
         public string FullName { get; set; }
 
