@@ -9,8 +9,43 @@ namespace LearnCSharp.Cmd
     {
         public static void Main()
         {
+            var employeeDictionary = new Dictionary<string, Employee>() 
+            {
+                { "EMP-001", new Employee(){ FullName  = "Paul Wal"} }
+            };
 
-            Queue<string> queue = new Queue<string>();
+            Employee employee = employeeDictionary["EMP-001"];
+
+            var intDictionary = new Dictionary<string, int>()
+            {
+                { "item1", 1},
+                { "item2", 2},
+                {"item3", 3 }
+            };
+            var dictionary = new Dictionary<string, string>()
+            {
+                { "item3", "item Three"},
+                { "item4", "item four"}
+            };
+            dictionary["item1"] = "Item One";
+            dictionary["item2"] = "Item Two";
+            //foreach (KeyValuePair<string, string> item in dictionary)
+            //{
+            //        Console.WriteLine(item.Value);
+            //}
+
+            Console.WriteLine(dictionary["item2"]);
+            return;
+
+            var sortedSet = new SortedSet<int>() { 2, 1, 300, 3, 20, 19 };
+            foreach (var set in sortedSet)
+            {
+                Console.WriteLine(set);
+            }
+
+            return;
+
+            var queue = new Queue<string>();
             queue.Enqueue("item1");
             queue.Enqueue("item2");
             queue.Enqueue("item3");
@@ -100,10 +135,10 @@ namespace LearnCSharp.Cmd
             //}
 
             var word = "Hello World";
-           
+
             foreach (var item in word)
             {
-             
+
                 Console.WriteLine(item);
             }
 
