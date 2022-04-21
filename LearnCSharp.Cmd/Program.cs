@@ -9,10 +9,15 @@ namespace LearnCSharp.Cmd
     {
         public static void Main()
         {
-            var employeeDictionary = new Dictionary<string, Employee>() 
+            var employeeDictionary = new Dictionary<string, Employee>()
             {
                 { "EMP-001", new Employee(){ FullName  = "Paul Wal"} }
             };
+
+            employeeDictionary["EMP-001"] = new Employee() { FullName = "Carlos Gambino" };
+
+            if (employeeDictionary.ContainsKey("Emp-001"))
+                Console.WriteLine(employeeDictionary["Emp-001"]);
 
             Employee employee = employeeDictionary["EMP-001"];
 
