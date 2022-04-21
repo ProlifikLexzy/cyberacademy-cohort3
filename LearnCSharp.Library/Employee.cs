@@ -2,7 +2,7 @@
 
 namespace LearnCSharp.Library
 {
-     class Employee
+    public class Employee
     {
         internal static void SignIn()
         { }
