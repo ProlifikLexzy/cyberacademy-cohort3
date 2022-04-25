@@ -1,70 +1,61 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using LearnCSharp.Library;
 
 namespace LearnCSharp.Cmd
 {
     public class Program
     {
+
+        static string[] Keywords = {"purpose", "chalk", "crayon", "bags",
+            "pencil", "books","board", "marker","duster","shoe" };
+
+       
+        
         public static void Main()
         {
-            List<Product> prod = new List<Product>()
-            {
-                new Product(){Name = "Milo", Quantity = 10},
-                 new Product(){Name = "Peak", Quantity = 12},
-                  new Product(){Name = "Sugar", Quantity = 3},
-                   new Product(){Name = "Indomie", Quantity = 60},
-                    new Product(){Name = "Soap", Quantity = 5},
-                     new Product(){Name = "Cream", Quantity = 2},
-                      new Product(){Name = "Shoe", Quantity = 3},
-                       new Product(){Name = "Brush", Quantity = 2},
-                        new Product(){Name = "Biscuit", Quantity = 30},
-                         new Product(){Name = "Perfume", Quantity = 1},
-            };
+            var pro = new List<product>();
+            pro.Add(new product { Name = "Biro", price = 100, Quantity = 5, Places = "Lagos" });
+            pro.Add(new product { Name = "chalk", price = 1000, Quantity = 3, Places = "Lagos" });
+            pro.Add(new product { Name = "Bag", price = 1500, Quantity = 4, Places = "Ogun" });
+            pro.Add(new product { Name = "Shoe", price = 500, Quantity = 1, Places = "Ogun" });
+            pro.Add(new product { Name = "Books", price = 2000, Quantity = 3, Places = "Abuja" });
 
-            prod.Sort(new Comparer<Product>());
-            foreach (var p in prod)
+            //var word = pro.Where(y => y.price > 500)
+            //               .OrderByDescending(x => x.Quantity)
+            //               .ThenBy(x => x.Name)
+            //               .Select(x => (Productname:x.Name, ProQuantity:x.Quantity));
+
+            var word = pro.GroupBy(x => x.Places)
+                           .Select(x => (x.Key, 
+                           proname:x.Select(x => x)))
+                           .OrderBy(x => x.Key);
+
+
+            foreach (var item in word)
             {
-                Console.WriteLine("{0}\t{1} ", p.Name, p.Quantity);
+                Console.WriteLine(item.Key);
+                foreach (var items in item.proname)
+                {
+                    Console.WriteLine($"    productname:{items.Name}:  {items.price}");
+                }
             }
-            Console.WriteLine();
-            Console.ReadLine();
+            //var word = Keywords.Where(b => !b.Contains("a") || !b.Contains("o"));
+            //                        //.Select(z => z);
+            //foreach(var item in word)
+            //{
+            //    Console.WriteLine(item);
+            //}
         }
-        public class Product: IOrder
-        {
-            public string Name { get; set; }
-            public int Quantity { get; set; }
-            public int Order { set; get; }
-
-            public override string ToString()
-            {
-                return $"Name: {Name}, Quantity: {Quantity}";
-            }
-        }
-
-        public class Comparer<T> : IComparer<T> where T : IOrder
-        {
-            //public T Order { get; set; }
-            public int Compare(T x, T y)
-            {
-
-                if (x.Order < y.Order)
-                    return 1;
-                else if (x.Order > y.Order)
-                    return -1;
-                else
-                    return 0;
-
-            }
-
-
-        }
-
-        public interface IOrder
-        {
-            public int Order { get; set; }
-        }
-
+    }
+    public class product
+    { 
+        public string Name { get; set; }
+        public double price { get; set; }
+        public int Quantity { get; set; }
+        public string Places { get; set; }
     }
 }
+
