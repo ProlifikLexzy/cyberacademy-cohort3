@@ -9,167 +9,62 @@ namespace LearnCSharp.Cmd
     {
         public static void Main()
         {
-            var employeeDictionary = new Dictionary<string, Employee>()
+            List<Product> prod = new List<Product>()
             {
-                { "EMP-001", new Employee(){ FullName  = "Paul Wal"} }
+                new Product(){Name = "Milo", Quantity = 10},
+                 new Product(){Name = "Peak", Quantity = 12},
+                  new Product(){Name = "Sugar", Quantity = 3},
+                   new Product(){Name = "Indomie", Quantity = 60},
+                    new Product(){Name = "Soap", Quantity = 5},
+                     new Product(){Name = "Cream", Quantity = 2},
+                      new Product(){Name = "Shoe", Quantity = 3},
+                       new Product(){Name = "Brush", Quantity = 2},
+                        new Product(){Name = "Biscuit", Quantity = 30},
+                         new Product(){Name = "Perfume", Quantity = 1},
             };
 
-            employeeDictionary["EMP-001"] = new Employee() { FullName = "Carlos Gambino" };
-
-            if (employeeDictionary.ContainsKey("Emp-001"))
-                Console.WriteLine(employeeDictionary["Emp-001"]);
-
-            Employee employee = employeeDictionary["EMP-001"];
-
-            var intDictionary = new Dictionary<string, int>()
+            prod.Sort(new Comparer<Product>());
+            foreach (var p in prod)
             {
-                { "item1", 1},
-                { "item2", 2},
-                {"item3", 3 }
-            };
-            var dictionary = new Dictionary<string, string>()
-            {
-                { "item3", "item Three"},
-                { "item4", "item four"}
-            };
-            dictionary["item1"] = "Item One";
-            dictionary["item2"] = "Item Two";
-            //foreach (KeyValuePair<string, string> item in dictionary)
-            //{
-            //        Console.WriteLine(item.Value);
-            //}
-
-            Console.WriteLine(dictionary["item2"]);
-            return;
-
-            var sortedSet = new SortedSet<int>() { 2, 1, 300, 3, 20, 19 };
-            foreach (var set in sortedSet)
-            {
-                Console.WriteLine(set);
+                Console.WriteLine("{0}\t{1} ", p.Name, p.Quantity);
             }
-
-            return;
-
-            var queue = new Queue<string>();
-            queue.Enqueue("item1");
-            queue.Enqueue("item2");
-            queue.Enqueue("item3");
-            queue.Enqueue("item4");
-
-            var q = queue.Dequeue();
-            q = queue.Peek();
-
-
-            return;
-
-            Stack<string> stack = new Stack<string>();
-            stack.Push("item1");
-            stack.Push("item2");
-            stack.Push("item3");
-
-            var item1 = stack.Pop();
-            Console.WriteLine(item1);
-            Console.WriteLine(stack.Count);
-            item1 = stack.Pop();
-            Console.WriteLine(item1);
-            Console.WriteLine(stack.Count);
-            item1 = stack.Peek();
-            Console.WriteLine(item1);
-            Console.WriteLine(stack.Count);
-            return;
-
-            var uniqueNameSet = new HashSet<string>();
-
-            uniqueNameSet.Add("James Mike");
-            uniqueNameSet.Add("JAMES Mike");
-            uniqueNameSet.Add("Segun Owa");
-
-            foreach (var item in uniqueNameSet)
-            {
-                Console.WriteLine(item);
-            }
-
-            return;
-
-            //var list = new List<string>()
-            //{
-            //   "James Mike",
-            //   "James Mike",
-            //   "James Mike",
-            //   "James Mike",
-            //}; 
-            //Console.WriteLine($"Capacity: {list.Capacity}");
-
-            //list.Add("James Mike");
-            //Console.WriteLine($"Capacity: {list.Capacity}");
-            //Console.WriteLine($"Count: {list.Count}");
-            //list.Add("James Mike");
-            //list.Add("James Mike");
-            //list.Add("James Mike");
-            //list.Add("James Mike");
-            //Console.WriteLine($"Capacity: {list.Capacity}");
-            //Console.WriteLine($"Count: {list.Count}");
-
-            //var employees = new Employee[]
-            //{
-            //    new Employee(){ FullName = "Warren Buffet"},
-            //    new Employee(){ FullName = "Steve Jobs"},
-            //    new Employee{ FullName ="Bill Gates"}
-            //};
-
-            //var employees2 = new Employee[]
-            //{
-            //    new Employee(){ FullName = "Jim Ovia"},
-            //    new Employee(){ FullName = "Aliko Dangote"},
-            //    new Employee{ FullName ="Mike Adenuga"}
-            //};
-
-            //var staffs = new Staffs(employees);
-
-            //var enumerator = staffs.GetEnumerator();
-
-            //while (enumerator.MoveNext())
-            //{
-            //    var item = enumerator.Current;
-            //    Console.WriteLine(item);
-            //}
-            //while (enumerator.MoveNext())
-            //{
-            //    var item = enumerator.Current;
-            //    Console.WriteLine(item);
-            //}
-
-            var word = "Hello World";
-
-            foreach (var item in word)
-            {
-
-                Console.WriteLine(item);
-            }
-
-            word += "C Sharp";
-
-            foreach (var item in word)
-            {
-
-                Console.WriteLine(item);
-            }
-
-            //var staffs2 = new Staffs(employees2);
-
-
-            //foreach (var item in staffs)
-            //{
-            //    Console.WriteLine(item);
-            //}
-
-            //Console.WriteLine("=================");
-            //foreach (var item in staffs)
-            //{
-            //    Console.WriteLine(item);
-            //}
-
+            Console.WriteLine();
             Console.ReadLine();
         }
+        public class Product: IOrder
+        {
+            public string Name { get; set; }
+            public int Quantity { get; set; }
+            public int Order { set; get; }
+
+            public override string ToString()
+            {
+                return $"Name: {Name}, Quantity: {Quantity}";
+            }
+        }
+
+        public class Comparer<T> : IComparer<T> where T : IOrder
+        {
+            //public T Order { get; set; }
+            public int Compare(T x, T y)
+            {
+
+                if (x.Order < y.Order)
+                    return 1;
+                else if (x.Order > y.Order)
+                    return -1;
+                else
+                    return 0;
+
+            }
+
+
+        }
+
+        public interface IOrder
+        {
+            public int Order { get; set; }
+        }
+
     }
 }
