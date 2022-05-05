@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace LearnCSharp.Cmd
 {
@@ -6,9 +8,41 @@ namespace LearnCSharp.Cmd
     {
         static void Main()
         {
-            var anything = new int[4]{9, 3, 88, 45 };
-           
-            Console.WriteLine(anything[2]);
+            var task = new Task(DoWork);
+
+            var task2 = new Task(delegate { DoWork(); });
+
+            var task3 = new Task(() =>
+            {
+                for (int i = 0; i < 100_0000; i++)
+                {
+                    Console.Write(i);
+                }
+
+            });
+
+            task.Start();
+          
+            Console.WriteLine("End of Main......");
+            Console.Read();
+
+        }
+
+        public async static Task DoWork()
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                Console.Write(i);
+            }
+        }
+
+        public async Task<int> Add()
+        {
+
+        }
+
+        public async Task DoWorkAsync()
+        {
 
         }
     }
